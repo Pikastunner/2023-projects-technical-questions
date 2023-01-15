@@ -8,6 +8,8 @@ import styles from "./Table.module.css";
 // TODO is at line 68 !
 // !!!!!!!!!!!!!!!!!!!!
 
+
+
 interface AlertUpdate {
   date: string,
   update: string
@@ -67,7 +69,7 @@ export default function Table() {
               {content.status}
             </div>
             <div className={styles.item}>
-              {/* TODO: add updates */}
+              <Append alert={content.alert} status={content.status} updates={content.updates}/>
             </div>
           </div>
         ))}
@@ -75,3 +77,21 @@ export default function Table() {
     </>
   )
 }
+
+function Append(content: Alert) {
+  return (
+      <div>
+        {content.updates.map(x => (
+          <div className={styles.update}>
+            <div className={styles.update}> 
+              {x.update}  
+            </div>
+            <div className={styles.date}>
+              {x.date}
+            </div>
+          </div>
+        ))}
+      </div>
+  )
+}
+
